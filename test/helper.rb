@@ -14,3 +14,13 @@ require 'mocha/setup'
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'ethel/sequel'
+
+class SequenceHelper
+  def initialize(name)
+    @seq = Mocha::Sequence.new(name)
+  end
+
+  def <<(expectation)
+    expectation.in_sequence(@seq)
+  end
+end

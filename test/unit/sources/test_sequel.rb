@@ -18,7 +18,7 @@ module TestSources
     end
 
     test "subclass of Source" do
-      assert_equal Sources::Sequel.superclass, Source
+      assert_equal Source, Sources::Sequel.superclass
     end
 
     test "initialize with table name, uri, and options" do
