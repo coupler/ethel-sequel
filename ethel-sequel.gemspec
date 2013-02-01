@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = Ethel::Sequel::VERSION
   gem.authors       = ["Jeremy Stephens"]
   gem.email         = ["jeremy.f.stephens@vanderbilt.edu"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{Adds Sequel source and target for Ethel}
+  gem.summary       = %q{Sequel plugin for Ethel}
+  gem.homepage      = "https://github.com/coupler/ethel-sequel"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

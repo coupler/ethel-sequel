@@ -3,10 +3,16 @@ module Ethel
     class Sequel < Target
       attr_accessor :force, :import_limit
 
-      def initialize(table_name, *database_args)
+      def initialize(table_name, *args)
         super
 
-        @database = ::Sequel.connect(*database_args)
+        @database =
+          if args.length == 1 && args[0].kind_of?(::Sequel::Database)
+            args[0]
+          else
+            ::Sequel.connect(*args)
+          end
+
         @table_name = table_name
         @fields = []
         @rows = []

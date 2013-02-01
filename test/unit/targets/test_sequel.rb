@@ -12,7 +12,7 @@ module TestTargets
 
     def setup
       @database = stub('database')
-      Sequel.stubs(:connect).returns(@database)
+      ::Sequel.stubs(:connect).returns(@database)
       @dataset = stub('dataset', :db => @database)
       @database.stubs(:[]).returns(@dataset)
     end
@@ -22,11 +22,17 @@ module TestTargets
     end
 
     test "initialize with table name, uri, and options" do
-      Sequel.expects(:connect).with('sqlite:/', :timeout => 1234).
+      ::Sequel.expects(:connect).with('sqlite:/', :timeout => 1234).
         returns(@database)
       assert_nothing_raised do
         Targets::Sequel.new(:foo, 'sqlite:/', {:timeout => 1234})
       end
+    end
+
+    test "using Sequel::Database" do
+      ::Sequel.expects(:connect).never
+      @database.expects(:kind_of?).with(::Sequel::Database).returns(true)
+      Targets::Sequel.new(:foo, @database)
     end
 
     test "#prepare creates table if it doesn't exist" do
