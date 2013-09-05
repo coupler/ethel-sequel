@@ -14,7 +14,7 @@ require 'tempfile'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'ethel/sequel'
+require 'ethel/adapters/sequel'
 
 class SequenceHelper
   def initialize(name)

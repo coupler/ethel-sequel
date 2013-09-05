@@ -1,1 +1,1 @@
-require 'ethel/sequel'
+require 'ethel/adapters/sequel'

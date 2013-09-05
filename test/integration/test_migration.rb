@@ -8,12 +8,20 @@ class TestMigration < Test::Unit::TestCase
       String :bar
     end
     db[:foo].import([:bar], [%w{123}, %w{456}])
-    source = Ethel::Sources::Sequel.new(db[:foo])
-    target = Ethel::Targets::Sequel.new(:bar, db)
-    migration = Ethel::Migration.new(source, target)
-    migration.copy(source.fields[:id])
-    migration.cast(source.fields[:bar], :integer)
-    migration.run
+
+    reader_options = {
+      :type => 'sequel',
+      :dataset => db[:foo]
+    }
+    writer_options = {
+      :type => 'sequel',
+      :database => db,
+      :table_name => 'bar'
+    }
+
+    Ethel.migrate(reader_options, writer_options) do |m|
+      m.cast('bar', :integer)
+    end
 
     assert_include db.tables, :bar
     assert_equal([{:id => 1, :bar => 123}, {:id => 2, :bar => 456}],

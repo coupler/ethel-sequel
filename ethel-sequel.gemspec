@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'ethel/sequel/version'
+require 'ethel/adapters/sequel/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "ethel-sequel"
-  gem.version       = Ethel::Sequel::VERSION
+  gem.version       = Ethel::Adapters::Sequel::VERSION
   gem.authors       = ["Jeremy Stephens"]
   gem.email         = ["jeremy.f.stephens@vanderbilt.edu"]
-  gem.description   = %q{Adds Sequel source and target for Ethel}
-  gem.summary       = %q{Sequel plugin for Ethel}
+  gem.description   = %q{Adds Sequel support to Ethel}
+  gem.summary       = %q{Sequel adapter for Ethel}
   gem.homepage      = "https://github.com/coupler/ethel-sequel"
 
   gem.files         = `git ls-files`.split($/)
