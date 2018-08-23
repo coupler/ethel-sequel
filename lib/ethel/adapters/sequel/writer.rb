@@ -32,9 +32,9 @@ module Ethel
           end
 
           if @force
-            @database.create_table!(@table_name, generator)
+            @database.create_table!(@table_name, generator: generator)
           else
-            @database.create_table(@table_name, generator)
+            @database.create_table(@table_name, generator: generator)
           end
         end
 

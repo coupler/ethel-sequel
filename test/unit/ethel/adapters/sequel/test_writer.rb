@@ -64,7 +64,7 @@ module TestAdapters
         @s_database.expects(:create_table_generator).returns(@s_generator)
         @s_generator.expects(:column).with('id', Integer)
         @s_generator.expects(:column).with('foo', String)
-        @s_database.expects(:create_table).with(:foo, @s_generator)
+        @s_database.expects(:create_table).with(:foo, generator: @s_generator)
 
         writer.prepare(dataset)
       end
@@ -87,7 +87,7 @@ module TestAdapters
         @s_database.expects(:create_table_generator).returns(@s_generator)
         @s_generator.expects(:column).with('id', Integer)
         @s_generator.expects(:column).with('foo', String)
-        @s_database.expects(:create_table!).with(:foo, @s_generator)
+        @s_database.expects(:create_table!).with(:foo, generator: @s_generator)
 
         writer.prepare(dataset)
       end
