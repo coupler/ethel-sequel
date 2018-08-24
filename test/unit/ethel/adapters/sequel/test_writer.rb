@@ -59,11 +59,13 @@ module TestAdapters
         dataset = stub('dataset')
         field_1 = stub('field 1', :name => 'id', :type => :integer)
         field_2 = stub('field 2', :name => 'foo', :type => :string)
-        dataset.stubs(:each_field).multiple_yields([field_1], [field_2])
+        field_3 = stub('field 3', :name => 'bar', :type => :float)
+        dataset.stubs(:each_field).multiple_yields([field_1], [field_2], [field_3])
 
         @s_database.expects(:create_table_generator).returns(@s_generator)
         @s_generator.expects(:column).with('id', Integer)
         @s_generator.expects(:column).with('foo', String)
+        @s_generator.expects(:column).with('bar', Float)
         @s_database.expects(:create_table).with(:foo, generator: @s_generator)
 
         writer.prepare(dataset)

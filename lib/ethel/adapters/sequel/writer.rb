@@ -25,6 +25,8 @@ module Ethel
                 Integer
               when :string
                 String
+              when :float
+                Float
               end
             generator.column(field.name, type)
             @field_names << field.name
